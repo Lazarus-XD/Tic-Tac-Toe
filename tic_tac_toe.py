@@ -98,7 +98,7 @@ def check_if_win():
     else:
         pass
 
-#Brain of the code
+#The code is controlled from here
 def main():
     play = input("Are you ready to play? Enter Yes or No: ")
     print("\n")

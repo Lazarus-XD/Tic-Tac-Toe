@@ -73,9 +73,7 @@ def board_list():
                 break
                 
         moves += 1
-        if moves != 9:
-            continue
-        else:
+        if moves == 9:
             print("It's a Draw!!")
             break
 

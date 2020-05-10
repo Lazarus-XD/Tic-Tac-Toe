@@ -5,6 +5,7 @@ print('''    Welcome to the Tic-Tac-Toe game!
 This game is played between two players.
              GOOD LUCK!\n''')
 
+#Asks the players their name
 def replay():
     global player1, player2, selection
     player1 = input("Enter name of first player: ")
@@ -59,28 +60,24 @@ def board_list():
             board[number] = placeholder[0]   
             display_board()
             check_if_win()
-            if end == False:
-                pass
-            else:
-                print(f"{first} has won the game!!")
+            if end != False:
+                print(f"{first} has won the game!!!")
                 break
         #for player 2
         else:
             board[number] = placeholder[1]
             display_board()
             check_if_win()
-            if end == False:
-                pass
-            else:
+            if end != False:
                 print(f"{second} has won the game!!!")
                 break
+                
         moves += 1
         if moves != 9:
             continue
         else:
             print("It's a Draw!!")
             break
-    return board
 
 #Determine if player won or not.
 def check_if_win():
@@ -95,8 +92,6 @@ def check_if_win():
         board[4] == board[5] == board[6] != " " or #middle horizontal
         board[7] == board[8] == board[9] != " "):  #bottom horizontal
         end = True
-    else:
-        pass
 
 #The code is controlled from here
 def main():

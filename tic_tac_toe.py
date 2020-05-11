@@ -11,7 +11,13 @@ def replay():
     player1 = input("Enter name of first player: ")
     player2 = input("Enter name of second player: ")
     #Ask player 1 to be either X or O
-    selection = input(f"{player1}: Do you want to be X or O? Choose: ")
+    while True:
+        selection = input(f"{player1}: Do you want to be X or O? Choose: ")
+        if selection.upper() == "X" or selection.upper() == "O":
+            break
+        else:
+            print("Please select X or O")
+            continue
 
 #The main tic-tac-toe board where the action takes place
 def display_board():
@@ -54,7 +60,13 @@ def board_list():
     
     #Fills up the board list after each move
     while moves < 10:
-        number = int(input("Choose your next position (1-9): "))
+        #Check if selected position is empty or not
+        while True:
+            number = int(input("Choose your next position (1-9): "))
+            if board[number] != " ":
+                print("Please select an empty board position!\n")
+                continue
+            break
         #for player 1
         if moves % 2 == 0:
             board[number] = placeholder[0]   
@@ -70,8 +82,7 @@ def board_list():
             check_if_win()
             if end != False:
                 print(f"{second} has won the game!!!")
-                break
-                
+                break         
         moves += 1
         if moves == 9:
             print("It's a Draw!!")
@@ -99,5 +110,5 @@ def main():
         replay()
         board_list()
         play = input("Do you want to play again? Enter Yes or No: ")
-    
+        
 main()

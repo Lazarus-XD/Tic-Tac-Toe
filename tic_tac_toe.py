@@ -40,7 +40,6 @@ def board_list():
     global board, to_go_first
     board = [" "," "," "," "," "," "," "," "," "," "]
     moves = 0
-
     #Calls the display_board() function
     display_board()
 
@@ -73,7 +72,7 @@ def board_list():
             display_board()
             check_if_win()
             if end != False:
-                print(f"{first} has won the game!!!")
+                print(f"\n{first} has won the game!!!\n")
                 break
         #for player 2
         else:
@@ -81,8 +80,8 @@ def board_list():
             display_board()
             check_if_win()
             if end != False:
-                print(f"{second} has won the game!!!")
-                break         
+                print(f"\n{second} has won the game!!!\n")
+                break           
         moves += 1
         if moves == 9:
             print("It's a Draw!!")
@@ -104,11 +103,20 @@ def check_if_win():
 
 #The code is controlled from here
 def main():
-    play = input("Are you ready to play? Enter Yes or No: ")
+    while True:
+        play = input("Are you ready to play? Enter 'y' or 'n': ")
+        if play == "y" or play == "n":
+            break
+        else:
+            print("Please enter 'y' or 'n'!")
     print("\n")
-    while play.lower() == "yes":
+    while play.lower() == "y":
         replay()
         board_list()
-        play = input("Do you want to play again? Enter Yes or No: ")
-        
+        while True:
+            play = input("Do you want to play again? Enter 'y' or 'n': ")
+            if play == "y" or play == "n":
+                break
+            else:
+                print("Please enter 'y' or 'n'!")
 main()

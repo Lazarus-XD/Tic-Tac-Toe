@@ -1,18 +1,21 @@
 import random
  
 #Welcome Message
-print('''    Welcome to the Tic-Tac-Toe game!
-This game is played between two players.
-             GOOD LUCK!\n''')
+print('''
+ ------------------------------------------
+|     Welcome to the Tic-Tac-Toe game!     |
+| This game is played between two players. |
+|                GOOD LUCK!                |
+ ------------------------------------------\n''')
 
 #Asks the players their name
 def replay():
     global player1, player2, selection
-    player1 = input("Enter name of first player: ")
+    player1 = input("\nEnter name of first player: ")
     player2 = input("Enter name of second player: ")
     #Ask player 1 to be either X or O
     while True:
-        selection = input(f"{player1}: Do you want to be X or O? Choose: ")
+        selection = input(f"\n{player1}: Do you want to be X or O? Choose: ")
         if selection.upper() == "X" or selection.upper() == "O":
             break
         else:
@@ -21,7 +24,7 @@ def replay():
 
 #The main tic-tac-toe board where the action takes place
 def display_board():
-    print("\n"*5)
+    print("\n"*10)
     print('''
      |     |          |          |     | 
   1  |  2  |  3       |       {}  |  {}  |  {}
@@ -59,13 +62,22 @@ def board_list():
     
     #Fills up the board list after each move
     while moves < 10:
-        #Check if selected position is empty or not
+        #Check if selected position is valid or not
         while True:
-            number = int(input("Choose your next position (1-9): "))
-            if board[number] != " ":
-                print("Please select an empty board position!\n")
-                continue
-            break
+            try:
+                if moves % 2 == 0:
+                    number = int(input(f"{first}, choose your next position (1-9): "))
+                else:
+                    number = int(input(f"{second}, choose your next position (1-9): "))
+            except:
+                print("Please enter a number between 1-9!")
+            else:
+                if number < 1 or number > 9:
+                    print("Please enter a number between 1-9!")
+                elif board[number] != " ":
+                    print("Please select an empty board position!")
+                else:
+                    break
         #for player 1
         if moves % 2 == 0:
             board[number] = placeholder[0]   
@@ -101,22 +113,19 @@ def check_if_win():
         board[7] == board[8] == board[9] != " "):  #bottom horizontal
         end = True
 
-#The code is controlled from here
-def main():
+#The code is run from here
+while True:
+    play = input("Are you ready to play? Enter 'y' or 'n': ")
+    if play == "y" or play == "n":
+        break
+    else:
+        print("Please enter 'y' or 'n'!")
+while play.lower() == "y":
+    replay()
+    board_list()
     while True:
-        play = input("Are you ready to play? Enter 'y' or 'n': ")
+        play = input("Do you want to play again? Enter 'y' or 'n': ")
         if play == "y" or play == "n":
             break
         else:
             print("Please enter 'y' or 'n'!")
-    print("\n")
-    while play.lower() == "y":
-        replay()
-        board_list()
-        while True:
-            play = input("Do you want to play again? Enter 'y' or 'n': ")
-            if play == "y" or play == "n":
-                break
-            else:
-                print("Please enter 'y' or 'n'!")
-main()
